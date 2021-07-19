@@ -6,6 +6,7 @@ const userController = require('../controllers/userController')
 
 // rutas para usurios
 
-router.get('/Login', )
+// router.get('/Login', )
 router.post('/SingUp', userController.registerUser)
 
+module.exports=router
