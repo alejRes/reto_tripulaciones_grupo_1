@@ -1,25 +1,36 @@
 //importacion paquetes necesarios
-const bcrypt = require('bcrypt')
 
-// const User = require ('');
+const AES = require('crypto-js/sha256')
+
+const User = require('../models/db');
 
 
 const userController = {
 
-    registerUser: async ({body}, res) =>{
+    registerUser: async ({ body }, res) => {
 
-        const{password, passwordConfirmation, email, username}= body
+        const { password, passwordConfirmation, email, username } = body
+        let userdatabase = await User.checkUser(email)
+        console.log(`userdatabase`, userdatabase[0])
+        if (password === passwordConfirmation) {
+            if (userdatabase[0] === undefined/*  || userdatabase[0].email != email */)  {
+                let encryptPass = AES(password)
+                try {
+                    let response = await User.insertUser([encryptPass, email, username])
+                    res.status(201).json({ message: "Usuario creado correctamente", response })
+                } catch (error) {
+                    res.status(404).json({ message: "error al crear el usuario" })
+                }
+            }else{
+                res.status(302).json({message: "el usuario ya existe"})
+            }
 
-        if (password === passwordConfirmation){
-            
-            let encryptPass = bcrypt.hashSync(password,10)
-            console.log(`encryptPass`, encryptPass)
-        }else{
-
+        } else {
+            res.status(205).json({ message: "Las contraseñas no coinciden" })
         }
-
     }
 
+    
 }
 
 module.exports = userController;
