@@ -20,6 +20,9 @@ const User ={
         } catch (error) {
             
 
+        }finally{
+            if(conn)
+                conn.end();
         }
         
     }, 
@@ -29,23 +32,40 @@ const User ={
         try {
 
             conn = await pool.getConnection();
-            let query = `SELECT email FROM usuarios WHERE email = ?`
+            let query = `SELECT count(email) as num  FROM usuarios WHERE email = ?`
             result = await conn.query(query,[email])
+            
+        } catch (error) {
+            
+        }finally{
+            if(conn)
+                conn.end();
+        }
+        return result
+    },
+
+    getUser: async (userlogin)=>{
+
+        console.log(`userLogin`, userlogin)
+
+        let conn, result;
+
+        try {
+
+            conn = await pool.getConnection();
+            let query = `SELECT *, count(nombre) as c FROM usuarios WHERE email = ? and password = ?`
+            result = await conn.query(query,userlogin)
             console.log(`result`, result)
             console.log(`query`, query)
             
         } catch (error) {
             
+        }finally{
+            if(conn)
+                conn.end();
         }
         return result
-    },
-
-    getUser: async(user)=>{
-
-        
     }
-
-
 }
 
 module.exports=User;
