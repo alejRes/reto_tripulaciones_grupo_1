@@ -8,5 +8,7 @@ const userController = require('../controllers/userController')
 
 // router.get('/Login', )
 router.post('/SingUp', userController.registerUser)
+router.post('/Login', userController.loginUser)
+// router.get('/Search',checkCookie, userController.getDataUser)
 
 module.exports=router
