@@ -1,5 +1,9 @@
 const router = require('express').Router()
 
+//importacion middleware
+
+const checktoken = require('../middleware/checktoken')
+
 // importacion controlador
 
 const userController = require('../controllers/userController')
@@ -9,6 +13,7 @@ const userController = require('../controllers/userController')
 // router.get('/Login', )
 router.post('/SingUp', userController.registerUser)
 router.post('/Login', userController.loginUser)
-// router.get('/Search',checkCookie, userController.getDataUser)
+router.post('/Reviews',checktoken, userController.getDataReviews)
+router.get('/Search',checktoken,userController.uploadpage)
 
 module.exports=router

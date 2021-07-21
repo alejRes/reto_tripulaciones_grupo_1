@@ -18,7 +18,7 @@ const User ={
             result = await conn.query(query,user)
 
         } catch (error) {
-            
+            result={error: true, message:"Error de conexion"}
 
         }finally{
             if(conn)
@@ -36,7 +36,7 @@ const User ={
             result = await conn.query(query,[email])
             
         } catch (error) {
-            
+            result={error: true, message:"Error de conexion"}
         }finally{
             if(conn)
                 conn.end();
@@ -46,8 +46,6 @@ const User ={
 
     getUser: async (userlogin)=>{
 
-        console.log(`userLogin`, userlogin)
-
         let conn, result;
 
         try {
@@ -55,16 +53,35 @@ const User ={
             conn = await pool.getConnection();
             let query = `SELECT *, count(nombre) as c FROM usuarios WHERE email = ? and password = ?`
             result = await conn.query(query,userlogin)
-            console.log(`result`, result)
-            console.log(`query`, query)
+        
             
         } catch (error) {
-            
+            result={error: true, message:"Error de conexion"}
         }finally{
             if(conn)
                 conn.end();
         }
         return result
+    }, 
+    getReviews: async()=>{
+        
+        let conn, result;
+
+        try {
+
+            conn = await pool.getConnection();
+            let query = ``
+            result = await conn.query(query)
+        
+            
+        } catch (error) {
+            result={error: true, message:"Error de conexion"}
+        }finally{
+            if(conn)
+                conn.end();
+        }
+        return result
+
     }
 }
 
