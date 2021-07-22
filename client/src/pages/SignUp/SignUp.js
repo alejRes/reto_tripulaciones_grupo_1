@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 function SingUp() {
     const [user, setUser] = useState({})
@@ -6,6 +6,7 @@ function SingUp() {
     const [valPass, setvalPass] = useState(true);
     const [valEmail, setvalEmail] = useState(true);
     const [valCompare, setvalCompare] = useState(true);
+    const [empty, setEmpty] = useState(true)
 
 
     let regexEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
@@ -23,37 +24,54 @@ function SingUp() {
     const sendSignUp = (e) => {
         let countchecks = 0;
         e.preventDefault()
+        if(user){
+        
+            for (const key in user) {
+                console.log(`user`, user)
+                switch (key) {
+                    case 'username':
+                        if (user[key] && user[key].length > 5) {
+                            setvalName(true)
+                            countchecks++;
+                        } else {
+                            setvalName(false)
+                        }
+                        break;
+                    case 'password':
+                        if (user[key] === user[key]) {
 
-        /* for (const key in user) {
-        } */
-
-        if (user.username && user.username.length > 5) {
-            setvalName(true)
-            countchecks++;
-        } else {
-            setvalName(false)
-        }
-        if (regexEmail.test(user.email)){
-            setvalEmail(true)
-            countchecks++;
-        } else {
-            setvalEmail(false)
-        }
-        if (user.password === user.passwordConfirmation){
-            if(regexPass.test(user.password)){
-                setvalPass(true)
-            }else{
-                setvalPass(false)
+                            if (regexPass.test(user[key])) {
+                                setvalPass(true)
+                                countchecks++;
+                            } else {
+                                setvalPass(false)
+                            }
+                            setvalCompare(true)
+                        } else {
+                            setvalCompare(false)
+                        }
+                        break;
+                    case 'email':
+                        if (regexEmail.test(user[key])) {
+                            setvalEmail(true)
+                            countchecks++;
+                        } else {
+                            setvalEmail(false)
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
-            setvalCompare(true)
-            countchecks++;
-        } else {
-            setvalCompare(false)
+            setEmpty(false)
         }
-        if(countchecks===4){
+        else{
+            setEmpty(true)
+        }
+        if (countchecks === 3) {
             console.log(`registro enviado`)
         }
-        
+
     }
 
 
@@ -69,7 +87,7 @@ function SingUp() {
                 <input type="password" name='passwordConfirmation' placeholder='repetir password' onChange={onChangeInput}></input>
                 {valCompare ? <></> : <p>Las contraseñas no coinciden</p>}
                 {valPass ? <></> : <p>debe tener mayuscula, minuscula, numero y 8-16 caracteres</p>}
-
+                {empty? <p>Rellena todos los campos</p>: <></> }
                 <button value="Enviar" onClick={sendSignUp} onKeyPress={sendSignUp}>Enviar</button>
             </form>
         </>
