@@ -13,7 +13,7 @@ const userController = require('../controllers/userController')
 // router.get('/Login', )
 router.post('/SingUp', userController.registerUser)
 router.post('/Login', userController.loginUser)
-router.post('/Reviews',checktoken, userController.getDataReviews)
-router.get('/Search',checktoken,userController.uploadpage)
+router.post('/Reviews', userController.getDataReviews)
+// router.get('/Search',userController.uploadpage)
 
 module.exports=router

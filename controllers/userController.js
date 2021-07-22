@@ -47,7 +47,7 @@ const userController = {
             if (response[0].c === 1) {
                 const token = jwt.sign({ email, nombre: response[0].nombre }, process.env.SECRET_KEY)
                 res.cookie('token', token, { httpOnly: true })
-                res.status(200).json({ message: "bienvenido user" })
+                res.status(200).json({ message: "bienvenido user", response:{email:response.email, name: response.nombre} })
             } else {
                 res.status(401).json({ message: "password o usuario incorrecto" })
             }
