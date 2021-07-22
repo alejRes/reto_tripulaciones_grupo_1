@@ -8,43 +8,43 @@ const pool = mariadb.createPool({
     connectionLimit: 5
 })
 
-const User ={
+const User = {
 
-    insertUser: async (user)=>{
+    insertUser: async (user) => {
         let conn, result;
         try {
             conn = await pool.getConnection();
             let query = `INSERT into usuarios (password, email , nombre) values (?,?,?)`
-            result = await conn.query(query,user)
+            result = await conn.query(query, user)
 
         } catch (error) {
-            result={error: true, message:"Error de conexion"}
+            result = { error: true, message: "Error de conexion" }
 
-        }finally{
-            if(conn)
+        } finally {
+            if (conn)
                 conn.end();
         }
-        
-    }, 
-    checkUser: async(email)=>{
+
+    },
+    checkUser: async (email) => {
         let conn, result;
 
         try {
 
             conn = await pool.getConnection();
             let query = `SELECT count(email) as num  FROM usuarios WHERE email = ?`
-            result = await conn.query(query,[email])
-            
+            result = await conn.query(query, [email])
+
         } catch (error) {
-            result={error: true, message:"Error de conexion"}
-        }finally{
-            if(conn)
+            result = { error: true, message: "Error de conexion" }
+        } finally {
+            if (conn)
                 conn.end();
         }
         return result
     },
 
-    getUser: async (userlogin)=>{
+    getUser: async (userlogin) => {
 
         let conn, result;
 
@@ -52,32 +52,82 @@ const User ={
 
             conn = await pool.getConnection();
             let query = `SELECT *, count(nombre) as c FROM usuarios WHERE email = ? and password = ?`
-            result = await conn.query(query,userlogin)
-        
-            
+            result = await conn.query(query, userlogin)
+
+
         } catch (error) {
-            result={error: true, message:"Error de conexion"}
-        }finally{
-            if(conn)
+            result = { error: true, message: "Error de conexion" }
+        } finally {
+            if (conn)
                 conn.end();
         }
         return result
-    }, 
-    getReviews: async()=>{
-        
+    },
+    getReviews: async (filter) => {
+
         let conn, result;
 
+        let arrayValues = [];
+
+        let baseQuery = `SELECT r.reviweID,r.tipoDiscapacidad,r.gradoDiscapacidad,r.valoracion,r.opinion,p.namePlace,p.direccion,p.web,p.descripcion,u.nombre FROM reviews as r INNER JOIN places as p ON r.namePlace = p.namePlace INNER JOIN usuarios as u ON r.userID=u.userID WHERE`;
+
+        // for que extrae las keys del objeto para comprarlas y poder extraer los valores de un objeto y 
+        for (const key in filter) {
+
+            switch (baseQuery.slice(-1)) {
+                case 'E':
+                    if (key === 'place') {
+                        baseQuery += ` p.namePlace REGEXP ?`;
+                        arrayValues.push(filter[key])
+                    }
+                    else if (key === 'typePlace') {
+                        baseQuery += ` p.tipo REGEXP ?`;
+                        arrayValues.push(filter[key])
+                    }
+                    else if (key === 'typeDisc') {
+                        baseQuery += ` r.tipoDiscapacidad REGEXP ?`;
+                        arrayValues.push(filter[key])
+                    }
+                    else if (key === 'levelDisc') {
+                        baseQuery += ` r.gradoDiscapacidad REGEXP ?`;
+                        arrayValues.push(filter[key])
+                    }
+                    break;
+
+                case '?':
+                    if (key === 'place') {
+                        baseQuery += ` and p.namePlace REGEXP ?`;
+                        arrayValues.push(filter[key])
+                    }
+                    else if (key === 'typePlace') {
+                        baseQuery += ` and p.tipo REGEXP ?`;
+                        arrayValues.push(filter[key])
+                    }
+                    else if (key === 'typeDisc') {
+                        baseQuery += ` and r.tipoDiscapacidad REGEXP ?`;
+                        arrayValues.push(filter[key])
+                    }
+                    else if (key === 'levelDisc') {
+                        baseQuery += ` and r.gradoDiscapacidad REGEXP ?`;
+                        arrayValues.push(filter[key])
+                    }
+
+                    break;
+            }
+        };
+        console.log(`baseQuery split`, baseQuery)
+        console.log(`arrayValues`, arrayValues)
         try {
 
             conn = await pool.getConnection();
-            let query = ``
-            result = await conn.query(query)
-        
-            
+            result = await conn.query(baseQuery, arrayValues)
+
+
         } catch (error) {
-            result={error: true, message:"Error de conexion"}
-        }finally{
-            if(conn)
+            console.log(`error`, error)
+            result = { error: true, message: "Error de conexion" }
+        } finally {
+            if (conn)
                 conn.end();
         }
         return result
@@ -85,4 +135,4 @@ const User ={
     }
 }
 
-module.exports=User;
+module.exports = User;

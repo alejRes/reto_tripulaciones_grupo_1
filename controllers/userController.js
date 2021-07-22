@@ -36,49 +36,38 @@ const userController = {
         }
     },
 
-    loginUser: async ({body}, res) => {
-        
-        const {password, email} = body;
+    loginUser: async ({ body }, res) => {
+
+        const { password, email } = body;
 
         try {
-            
+
             let encryptPass = SHA256(password)
             let response = await User.getUser([email, JSON.stringify(encryptPass.words)])
-            if (response[0].c === 1){
-               const token = jwt.sign({email, nombre: response[0].nombre}, process.env.SECRET_KEY) 
-               res.cookie('token', token, { httpOnly: true })
-               res.status(200).json({message:"bienvenido user"})
-            }else{
-                res.status(401).json({message:"password o usuario incorrecto"})
+            if (response[0].c === 1) {
+                const token = jwt.sign({ email, nombre: response[0].nombre }, process.env.SECRET_KEY)
+                res.cookie('token', token, { httpOnly: true })
+                res.status(200).json({ message: "bienvenido user" })
+            } else {
+                res.status(401).json({ message: "password o usuario incorrecto" })
             }
         } catch (error) {
             res.status(404).json({ message: "error al intentar el login" })
         }
     },
 
-    getDataReviews: async(req, res)=>{
+    getDataReviews: async ({body,user}, res) => {
 
-        console.log(`req.body`, req.body)
+        console.log(`req.body`, body)
         try {
-            
-            let encryptPass = SHA256(password)
-            let response = await User.getUser([email, JSON.stringify(encryptPass.words)])
-            if (response[0].c === 1){
-               const token = jwt.sign({email, nombre: response[0].nombre}, process.env.SECRET_KEY) 
-               res.cookie('token', token, { httpOnly: true })
-               res.status(200).json({message:"bienvenido user"})
-            }else{
-                res.status(401).json({message:"password o usuario incorrecto"})
-            }
+            let response = await User.getReviews(body)
+            res.status(200).json({ message: "reviews encontradas", response })
         } catch (error) {
-            res.status(404).json({ message: "error al intentar el login" })
+            res.status(404).json({ message: "error en el servidor" })
         }
-
-
-
     },
 
-    uploadpage: (req,res)=>{
+    uploadpage: (req, res) => {
         console.log(`req.user`, req.user)
         res.status(200).json(req.user)
     }
