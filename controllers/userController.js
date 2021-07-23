@@ -22,20 +22,20 @@ const userController = {
                     const token = jwt.sign({ email, username }, process.env.SECRET_KEY)
                     console.log(`token`, token)
                     res.cookie('token', token, { httpOnly: true })
-                    res.status(201).json({ message: "Usuario creado correctamente", response })
+                    res.status(201).json({ message: "Usuario creado correctamente", response, user:{email, username}})
 
                 } catch (error) {
                     res.status(404).json({ message: "error al crear el usuario" })
                 }
             } else {
-                res.status(302).json({ message: "el usuario ya existe" })
+                res.status(203).json({ message: "el usuario ya existe" })
             }
 
         } else {
             res.status(205).json({ message: "Las contraseña no coinciden" })
         }
     },
-
+ 
     loginUser: async ({ body }, res) => {
 
         const { password, email } = body;
@@ -47,9 +47,9 @@ const userController = {
             if (response[0].c === 1) {
                 const token = jwt.sign({ email, nombre: response[0].nombre }, process.env.SECRET_KEY)
                 res.cookie('token', token, { httpOnly: true })
-                res.status(200).json({ message: "bienvenido user", response:{email:response.email, name: response.nombre} })
+                res.status(200).json({ message: "bienvenido user", user:{email:response[0].email, name: response[0].nombre} })
             } else {
-                res.status(401).json({ message: "password o usuario incorrecto" })
+                res.status(203).json({ message: "password o usuario incorrecto" })
             }
         } catch (error) {
             res.status(404).json({ message: "error al intentar el login" })
