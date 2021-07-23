@@ -22,20 +22,20 @@ const userController = {
                     const token = jwt.sign({ email, username }, process.env.SECRET_KEY)
                     console.log(`token`, token)
                     res.cookie('token', token, { httpOnly: true })
-                    res.status(201).json({ message: "Usuario creado correctamente", response })
+                    res.status(201).json({ message: "Usuario creado correctamente", response, user:{email, username}})
 
                 } catch (error) {
                     res.status(404).json({ message: "error al crear el usuario" })
                 }
             } else {
-                res.status(302).json({ message: "el usuario ya existe" })
+                res.status(203).json({ message: "el usuario ya existe" })
             }
 
         } else {
             res.status(205).json({ message: "Las contraseña no coinciden" })
         }
     },
-
+ 
     loginUser: async ({ body }, res) => {
 
         const { password, email } = body;
