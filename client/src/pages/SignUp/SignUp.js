@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-
+import React, { useContext, useState, useEffect } from 'react'
+import { appContext } from '../../context/appContext'
+import {useHistory} from 'react-router-dom'
+import axios from 'axios'
 function SingUp() {
     const [user, setUser] = useState({})
     const [valName, setvalName] = useState(true);
@@ -8,10 +10,12 @@ function SingUp() {
     const [valCompare, setvalCompare] = useState(true);
     const [empty, setEmpty] = useState(true)
 
+    const{setUserOk, setLogin, Login} = useContext(appContext)
+
 
     let regexEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     let regexPass = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
-
+    let history = useHistory()
     const onChangeInput = (e) => {
 
         setUser({
@@ -21,13 +25,13 @@ function SingUp() {
 
     }
 
-    const sendSignUp = (e) => {
+    const sendSignUp = async(e) => {
         let countchecks = 0;
         e.preventDefault()
         if(user){
         
             for (const key in user) {
-                console.log(`user`, user)
+    
                 switch (key) {
                     case 'username':
                         if (user[key] && user[key].length > 5) {
@@ -38,7 +42,7 @@ function SingUp() {
                         }
                         break;
                     case 'password':
-                        if (user[key] === user[key]) {
+                        if (user[key] === user.passwordConfirmation) {
 
                             if (regexPass.test(user[key])) {
                                 setvalPass(true)
@@ -69,12 +73,21 @@ function SingUp() {
             setEmpty(true)
         }
         if (countchecks === 3) {
-            console.log(`registro enviado`)
+            let respuesta = await axios.post('/SingUp',user)
+            console.log(`respuesta`, respuesta)
+            console.log(`respuesta`, respuesta.status===203)
+            if(respuesta.status === 201){
+                setUserOk(respuesta.data.user)
+                setLogin(true)
+            }
         }
-
     }
 
+    useEffect(() => {
+    
+       history.push('/search')
 
+    }, [Login])
 
     return (
         <>
@@ -87,7 +100,7 @@ function SingUp() {
                 <input type="password" name='passwordConfirmation' placeholder='repetir password' onChange={onChangeInput}></input>
                 {valCompare ? <></> : <p>Las contraseñas no coinciden</p>}
                 {valPass ? <></> : <p>debe tener mayuscula, minuscula, numero y 8-16 caracteres</p>}
-                {empty? <p>Rellena todos los campos</p>: <></> }
+                {empty? <p>no se admiten campos vacios</p>: <></> }
                 <button value="Enviar" onClick={sendSignUp} onKeyPress={sendSignUp}>Enviar</button>
             </form>
         </>

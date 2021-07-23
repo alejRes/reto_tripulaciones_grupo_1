@@ -1,4 +1,5 @@
 import './App.css';
+import {useState} from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import {appContext} from './context/appContext'
 import Main from './components/Main/Main'
@@ -6,8 +7,14 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
 function App() {
-  
-  const value = {}
+  const [userOk, setUserOk] = useState({})
+  const [login, setLogin] = useState(false)
+  const value = {
+    userOk,
+    setUserOk,
+    login,
+    setLogin
+  }
   
   return (
     <div className="App">
