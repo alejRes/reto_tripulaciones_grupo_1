@@ -84,8 +84,8 @@ function SingUp() {
     }
 
     useEffect(() => {
-    
-       history.push('/search')
+        
+        if(Login) history.push('/search')
 
     }, [Login])
 
