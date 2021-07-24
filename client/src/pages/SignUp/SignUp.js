@@ -10,7 +10,7 @@ function SingUp() {
     const [valCompare, setvalCompare] = useState(true);
     const [empty, setEmpty] = useState(true)
 
-    const{setUserOk, setLogin, Login} = useContext(appContext)
+    const{setUserOk, setLogin, login} = useContext(appContext)
 
 
     let regexEmail = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
@@ -85,9 +85,9 @@ function SingUp() {
 
     useEffect(() => {
         
-        if(Login) history.push('/search')
+        if(login) history.push('/search')
 
-    }, [Login])
+    }, [login])
 
     return (
         <>

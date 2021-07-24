@@ -7,13 +7,18 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
 function App() {
+
   const [userOk, setUserOk] = useState({})
   const [login, setLogin] = useState(false)
+  const [search, setSearch] = useState([])
+  
   const value = {
     userOk,
     setUserOk,
     login,
-    setLogin
+    setLogin,
+    search,
+    setSearch
   }
   
   return (

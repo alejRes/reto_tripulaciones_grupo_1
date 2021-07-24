@@ -11,7 +11,7 @@ function Login() {
     const [valEmail, setvalEmail] = useState(true);
 
 
-    const { setUserOk, setLogin, Login } = useContext(appContext)
+    const { setUserOk, setLogin, login } = useContext(appContext)
 
     const onChangeInput = (e) => {
         setUser({
@@ -21,18 +21,19 @@ function Login() {
     }
     let history = useHistory();
 
-    const sendLogin = async () => {
-        let countchecks = 0;
+    const sendLogin = async (e) => {
+        e.preventDefault()
+        let checks = 0;
         if (user) {
             for (const key in user) {
-                let countchecks = 0;
+
                 switch (key) {
                     case 'password':
-                        countchecks++;
+                        checks++;
                         break;
                     case 'email':
                         setvalEmail(true)
-                        countchecks++
+                        checks++
                         break;
                     default:
                         break;
@@ -43,28 +44,42 @@ function Login() {
         else {
             setEmpty(true)
         }
-        if (countchecks === 2) {
-            let respuesta = await axios.post('/Login', user)
 
-            if (respuesta.status === 201) {
+        if (checks == 2) {
+            let respuesta = await axios.post('/Login', user)
+            console.log(`respuesta`, respuesta)
+            if (respuesta.status === 200) {
                 setUserOk(respuesta.data.user)
                 setLogin(true)
             }
         }
     }
+    const redirect = () => {
+
+        history.push('/search')
+
+    }
     useEffect(() => {
+        const changePage = () => {
+            if (login) history.push('/search')
+            console.log(`Login`, login)
+            
+        }
+        changePage()
 
-        if (Login) history.push('/search')
-
-    }, [Login])
+    }, [login])
 
     return (
-        <form >
-            <input type="text" name='email' placeholder='Introduce el correo electronico' onChange={onChangeInput} />
-            <input type="text" name='password' placeholder='Introduce contraseña' onChange={onChangeInput} />
-            {empty ? <p>Rellena los campos</p> : <></>}
-            <button onClick={sendLogin}>Enviar</button>
-        </form>
+        <>
+            <form >
+                <input type="text" name='email' placeholder='Introduce el correo electronico' onChange={onChangeInput} />
+                <input type="password" name='password' placeholder='Introduce contraseña' onChange={onChangeInput} />
+                {empty ? <p>Rellena los campos</p> : <></>}
+                <button onClick={sendLogin}>Enviar</button>
+                
+            </form>
+            <button onClick={redirect}>Accede como invitado</button>
+        </>
     )
 }
 
