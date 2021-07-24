@@ -49,6 +49,7 @@ function Search() {
     const sendSearch = async () => {
         
         let resp = await axios.post('/Reviews', busqueda)
+        // controlar la respuesta
         setSearch(resp.data)
         history.push('/reviews')
         
