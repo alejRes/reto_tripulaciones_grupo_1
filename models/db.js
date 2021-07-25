@@ -63,51 +63,68 @@ const User = {
         }
         return result
     },
+
+    getPlaces: async () => {
+        let conn, result
+
+        try {
+            conn = await pool.getConnection()
+            let query = 'SELECT nombre FROM places'
+            result = await conn.query(query)
+        } catch (error) {
+
+        } finally {
+            if (conn)
+                conn.end();
+        }
+        return result
+    },
+
     getReviews: async (filter) => {
 
         let conn, result;
 
         let arrayValues = [];
 
-        let baseQuery = `SELECT r.reviweID,r.tipoDiscapacidad,r.gradoDiscapacidad,r.valoracion,r.opinion,p.namePlace,p.direccion,p.web,p.descripcion,u.nombre FROM reviews as r INNER JOIN places as p ON r.namePlace = p.namePlace INNER JOIN usuarios as u ON r.userID=u.userID WHERE`;
+        let baseQuery = `SELECT r.reviweID,r.tipoDiscapacidad,r.gradoDiscapacidad,r.valoracion,r.opinion,p.nombre,p.direccion,p.web,p.descripcion,u.username FROM reviews as r INNER JOIN places as p ON r.nombre = p.nombre INNER JOIN usuarios as u ON r.userID=u.userID WHERE`;
 
         // for que extrae las keys del objeto para comprarlas y poder extraer los valores de un objeto y 
         for (const key in filter) {
 
             switch (baseQuery.slice(-1)) {
                 case 'E':
-                    if (key === 'place') {
-                        baseQuery += ` p.namePlace REGEXP ?`;
+                    if (key === 'nombre') {
+                        baseQuery += ` p.nombre REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
-                    else if (key === 'typePlace') {
+                    else if (key === 'tipositio') {
                         baseQuery += ` p.tipo REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
-                    else if (key === 'typeDisc') {
+                    else if (key === 'tipodiscapacidad') {
                         baseQuery += ` r.tipoDiscapacidad REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
-                    else if (key === 'levelDisc') {
+                    else if (key === 'gradodiscapacidad') {
                         baseQuery += ` r.gradoDiscapacidad REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
                     break;
 
                 case '?':
-                    if (key === 'place') {
+                    if (key === 'nombre') {
                         baseQuery += ` and p.namePlace REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
-                    else if (key === 'typePlace') {
+                    else if (key === 'tipositio') {
                         baseQuery += ` and p.tipo REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
-                    else if (key === 'typeDisc') {
+                    else if (key === 'tipodiscapacidad') {
                         baseQuery += ` and r.tipoDiscapacidad REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
-                    else if (key === 'levelDisc') {
+                    else if (key === 'gradodiscapacidad') {
                         baseQuery += ` and r.gradoDiscapacidad REGEXP ?`;
                         arrayValues.push(filter[key])
                     }

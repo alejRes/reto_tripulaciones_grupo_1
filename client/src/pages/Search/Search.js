@@ -56,11 +56,11 @@ function Search() {
     }
 
     const optionDatalist = () => {
-
+        
         if (datalist.length > 0) {
             return datalist.map((elem, i) =>
 
-                <option key={i} value={elem} />
+                <option key={i} value={elem.nombre} />
             )
         }
     }
@@ -71,27 +71,25 @@ function Search() {
             <datalist id='places'>
                 {optionDatalist()}
             </datalist>
-            <But click={handleclick} value='museos' />
-            <But click={handleclick} value='teatros' />
-            <But click={handleclick} value='Galerias' />
-            <But click={handleclick} value='Salas' />
-            <But click={handleclick} value='Monumentos' />
-            <But click={handleclick} value='Parques' />
-            <But click={handleclick} value='Mercados' />
-            <select name="Discapacidad" id="" onchange={handleSelectDisc}>
+            <But click={handleclick} value='museo' />
+            <But click={handleclick} value='teatro' />
+            <But click={handleclick} value='exposiciones' />
+            <But click={handleclick} value='sala' />
+            <But click={handleclick} value='monumento' />
+            <But click={handleclick} value='parque' />
+            <But click={handleclick} value='mercado' />
+            <select name="Discapacidad" id="" onChange={handleSelectDisc}>
                 <option value="">Discapacidad</option>
                 <option value="visual" >Visual</option>
                 <option value="fisica">Fisica</option>
-                <option value="Intelectual">Intelectual</option>
-                <option value="Auditiva">Auditiva</option>
-
+                <option value="intelectual">Intelectual</option>
+                <option value="auditiva">Auditiva</option>
             </select>
             <select name="Grado" id="" onChange={handleSelectGrado}>
                 <option value="">Grado</option>
                 <option value="33" > {"<"}33% </option>
                 <option value="55"> 33% - 66%</option>
                 <option value="66">{">"}66%</option>
-
             </select>
             <button onClick={sendSearch} value='buscar'>Buscar</button>
         </div>

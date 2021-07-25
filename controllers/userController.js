@@ -22,7 +22,7 @@ const userController = {
                     const token = jwt.sign({ email, username }, process.env.SECRET_KEY)
                     console.log(`token`, token)
                     res.cookie('token', token, { httpOnly: true })
-                    res.status(201).json({ message: "Usuario creado correctamente", response, user:{email, username}})
+                    res.status(201).json({ message: "Usuario creado correctamente", response, user: { email, username } })
 
                 } catch (error) {
                     res.status(404).json({ message: "error al crear el usuario" })
@@ -35,7 +35,7 @@ const userController = {
             res.status(205).json({ message: "Las contraseña no coinciden" })
         }
     },
- 
+
     loginUser: async ({ body }, res) => {
 
         const { password, email } = body;
@@ -47,7 +47,7 @@ const userController = {
             if (response[0].c === 1) {
                 const token = jwt.sign({ email, nombre: response[0].nombre }, process.env.SECRET_KEY)
                 res.cookie('token', token, { httpOnly: true })
-                res.status(200).json({ message: "bienvenido user", user:{email:response[0].email, name: response[0].nombre} })
+                res.status(200).json({ message: "bienvenido user", user: { email: response[0].email, name: response[0].nombre } })
             } else {
                 res.status(203).json({ message: "password o usuario incorrecto" })
             }
@@ -56,11 +56,37 @@ const userController = {
         }
     },
 
-    getDataReviews: async ({body,user}, res) => {
-
+    getDataReviews: async ({ body }, res) => {
+        let cadenaSitio = ''
+        let objaux = {}
         console.log(`req.body`, body)
+        for (const key in body) {
+            if (key === 'nombre') {
+                if (body[key].length > 0)
+                    objaux = { ...objaux, nombre: body[key] }
+            }
+            if (key === 'tipodiscapacidad') {
+                if (body[key].length > 0)
+                    objaux = { ...objaux, tipodiscapacidad: body[key] }
+            }
+            if (key === 'gradodiscapacidad') {
+                if (body[key].length > 0)
+                    objaux = { ...objaux, gradodiscapacidad: body[key] }
+            }
+            if (key === 'tipositio') {
+                if (body[key].length >= 1) {
+                    body[key].forEach(elem => {
+                        cadenaSitio.length == 0 ? cadenaSitio = elem : cadenaSitio = cadenaSitio + `|${elem}`
+                    })
+                    objaux = { ...objaux, tipositio: cadenaSitio }
+                }
+            }
+
+        }
+
+        console.log(`objaux`, objaux)
         try {
-            let response = await User.getReviews(body)
+            let response = await User.getReviews(objaux)
             res.status(200).json({ message: "reviews encontradas", response })
         } catch (error) {
             res.status(404).json({ message: "error en el servidor" })
@@ -70,6 +96,16 @@ const userController = {
     uploadpage: (req, res) => {
         console.log(`req.user`, req.user)
         res.status(200).json(req.user)
+    },
+
+    getPlaces: async (req, res) => {
+
+        try {
+            let response = await User.getPlaces()
+            res.status(200).json(response)
+        } catch (error) {
+
+        }
     }
 
 

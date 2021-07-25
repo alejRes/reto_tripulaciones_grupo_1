@@ -14,6 +14,7 @@ const userController = require('../controllers/userController')
 router.post('/SingUp', userController.registerUser)
 router.post('/Login', userController.loginUser)
 router.post('/Reviews', userController.getDataReviews)
+router.get('/getNamePlaces', userController.getPlaces)
 // router.get('/Search',userController.uploadpage)
 
 module.exports=router
