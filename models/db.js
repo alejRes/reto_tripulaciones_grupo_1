@@ -86,7 +86,7 @@ const User = {
 
         let arrayValues = [];
 
-        let baseQuery = `SELECT r.reviweID,r.tipoDiscapacidad,r.gradoDiscapacidad,r.valoracion,r.opinion,p.nombre,p.direccion,p.web,p.descripcion,u.username FROM reviews as r INNER JOIN places as p ON r.nombre = p.nombre INNER JOIN usuarios as u ON r.userID=u.userID WHERE`;
+        let baseQuery = `SELECT r.reviewID,r.tipoDiscapacidad,r.gradoDiscapacidad,r.valoracion,r.opinion,p.nombre,p.direccion,p.web,p.descripcion,u.username FROM reviews as r INNER JOIN places as p ON r.nombre = p.nombre INNER JOIN usuarios as u ON r.userID=u.userID WHERE`;
 
         // for que extrae las keys del objeto para comprarlas y poder extraer los valores de un objeto y 
         for (const key in filter) {

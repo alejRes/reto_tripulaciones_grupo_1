@@ -8,7 +8,9 @@ import But from '../../components/But/But'
 function Search() {
     const [busqueda, setBusqueda] = useState({ nombre: '', tipositio: [], tipodiscapacidad: '', gradodiscapacidad: '' })
     const [datalist, setDatalist] = useState([])
+    const [visible, setVisible] = useState(true)
     const { setSearch } = useContext(appContext)
+
 
     let history = useHistory()
 
@@ -49,9 +51,15 @@ function Search() {
     const sendSearch = async () => {
         
         let resp = await axios.post('/Reviews', busqueda)
+
+        if(resp.data.response.error){
+            setVisible(false)
+        } else{
+            setSearch(resp.data)
+            history.push('/reviews')
+        }
         // controlar la respuesta cuando tengamos la base de datos o controlarlo en la nueva vista
-        setSearch(resp.data)
-        history.push('/reviews')
+        
         
     }
 
@@ -72,6 +80,7 @@ function Search() {
                 {optionDatalist()}
             </datalist>
             <But click={handleclick} value='museo' />
+            <But click={handleclick} value='galeria' />
             <But click={handleclick} value='teatro' />
             <But click={handleclick} value='exposiciones' />
             <But click={handleclick} value='sala' />
@@ -92,6 +101,7 @@ function Search() {
                 <option value="66">{">"}66%</option>
             </select>
             <button onClick={sendSearch} value='buscar'>Buscar</button>
+            {visible?<></>: <p>Tienes que hacer una seleccion para realizar una busqueda</p> }
         </div>
     )
 }

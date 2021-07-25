@@ -15,14 +15,14 @@ export default function AddReviews() {
         <form onSubmit={
             handleSubmit(onSubmit)
         }>
-            <label for="name">User name</label>
-            <br/>
-            <input {...register("firstName")} id="name"/>
-            <br/>
-            <label for="discapacidad">seleccione tipo de discapacidad :</label>
+            <label for="nombreSitio">¿Dónde has estado?</label>
 
-            <select {...register("gender")} id="discapacidad">
-                <option>...</option>
+            <input {...register("nombreSitio")} id="nombreSitio"/>
+
+            <label>Introduce tu discapacidad</label>
+
+            <select {...register("tipoDiscapacidad")} id="discapacidad">
+                <option>Discapacidad</option>
                 <option value="motora">motora</option>
                 <option value="sensorial">sensorial</option>
                 <option value="intelectual">intelectual</option>
@@ -30,20 +30,14 @@ export default function AddReviews() {
                 <option value="visceral">visceral</option>
                 <option value="múltiple">múltiple</option>
             </select>
-            <br/>
-            <label for="grado">seleccione el grado de la discapacidad :</label>
-            <br/>
-            <div {...register("grado")} id="grado">
-                <input type="radio" value="33" name="grado" id="33"/>
-                <label for="33">33%</label>
-                <input type="radio" value="50" name="grado" id="50"/>
-                <label for="50">50%</label>
-                <input type="radio" value="66" name="grado" id="66"/>
-                <label for="66">66%</label>
-            </div>
+            <select {...register("gradoDiscapacidad")} id="discapacidad">
+                <option value="">Grado</option>
+                <option value="33" > {"<"}33% </option>
+                <option value="55"> 33% - 66%</option>
+                <option value="66">{">"}66%</option>
+            </select>
 
-
-            <textarea {...register("reaseña")} placeholder="Introduce reseña"/>
+            <textarea {...register("opinion")} placeholder="Introduce reseña" />
 
             <div className="stars">
                 {
@@ -68,9 +62,6 @@ export default function AddReviews() {
             })
             }
             </div>
-
-        
-            
                 <input type="checkbox" id="HuecoPasillo" value="HuecoPasillo" {...register("huecoPasillo")}/><label for="HuecoPasillo">Hueco pasillo</label>
                 <input type="checkbox" id="GiroSillas" value="GiroSillas" {...register("GiroSillas")}/><label for="GiroSillas">Giro sillas</label>
                 <input type="checkbox" id="Rampas" value="Rampas" {...register("Rampas")}/><label for="Rampas">Rampas</label>
@@ -78,7 +69,6 @@ export default function AddReviews() {
                 <input type="checkbox" id="Ascensores" value="Ascensores" {...register("Ascensores")}/><label for="Ascensores">Ascensores</label>
                 <input type="checkbox" id="Parking" value="Parking" {...register("Parking")}/><label for="Parking">Parking</label>
                 <input type="checkbox" id="BarraBano" value="BarraBano" {...register("BarraBano")}/><label for="BarraBano">Barra en el Baño</label>
-                <br />
             <input type="submit"/>
         </form>
     );
