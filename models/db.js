@@ -3,8 +3,9 @@ const mariadb = require('mariadb');
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: '',
+    password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
     connectionLimit: 5
 })
 
@@ -14,16 +15,17 @@ const User = {
         let conn, result;
         try {
             conn = await pool.getConnection();
-            let query = `INSERT into usuarios (password, email , nombre) values (?,?,?)`
+            let query = `INSERT into USER (Password, Email , Username) values (?,?,?)`
             result = await conn.query(query, user)
 
         } catch (error) {
-            result = { error: true, message: "Error de conexion" }
+            result = { error: true, message: "Error de conexion", error }
 
         } finally {
             if (conn)
                 conn.end();
         }
+        return result
 
     },
     checkUser: async (email) => {
@@ -32,7 +34,7 @@ const User = {
         try {
 
             conn = await pool.getConnection();
-            let query = `SELECT count(email) as num  FROM usuarios WHERE email = ?`
+            let query = `SELECT count(Email) as num  FROM USER WHERE Email = ?`
             result = await conn.query(query, [email])
 
         } catch (error) {
@@ -51,9 +53,8 @@ const User = {
         try {
 
             conn = await pool.getConnection();
-            let query = `SELECT *, count(nombre) as c FROM usuarios WHERE email = ? and password = ?`
+            let query = `SELECT *, count(Username) as c FROM USER WHERE Email = ? and Password = ?`
             result = await conn.query(query, userlogin)
-
 
         } catch (error) {
             result = { error: true, message: "Error de conexion" }
@@ -69,7 +70,7 @@ const User = {
 
         try {
             conn = await pool.getConnection()
-            let query = 'SELECT nombre FROM places'
+            let query = 'SELECT Nombre FROM PLACES'
             result = await conn.query(query)
         } catch (error) {
 
@@ -86,7 +87,7 @@ const User = {
 
         let arrayValues = [];
 
-        let baseQuery = `SELECT r.reviewID,r.tipoDiscapacidad,r.gradoDiscapacidad,r.valoracion,r.opinion,p.nombre,p.direccion,p.web,p.descripcion,u.username FROM reviews as r INNER JOIN places as p ON r.nombre = p.nombre INNER JOIN usuarios as u ON r.userID=u.userID WHERE`;
+        let baseQuery = `SELECT r.Reviewsid,r.Tipominusvalia,r.Gradominusvalia,r.Puntuacion,r.Opinion,p.Nombre,p.direccion,p.Sitioweb,p.descripcion,u.username FROM REVIEWS as r INNER JOIN PLACES as p ON r.Nombre = p.Nombre INNER JOIN USER as u ON r.Userid=u.Userid WHERE`;
 
         // for que extrae las keys del objeto para comprarlas y poder extraer los valores de un objeto y 
         for (const key in filter) {
@@ -94,38 +95,38 @@ const User = {
             switch (baseQuery.slice(-1)) {
                 case 'E':
                     if (key === 'nombre') {
-                        baseQuery += ` p.nombre REGEXP ?`;
+                        baseQuery += ` p.Nombre REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
                     else if (key === 'tipositio') {
-                        baseQuery += ` p.tipo REGEXP ?`;
+                        baseQuery += ` p.Tipo REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
                     else if (key === 'tipodiscapacidad') {
-                        baseQuery += ` r.tipoDiscapacidad REGEXP ?`;
+                        baseQuery += ` r.Tipominusvalia REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
                     else if (key === 'gradodiscapacidad') {
-                        baseQuery += ` r.gradoDiscapacidad REGEXP ?`;
+                        baseQuery += ` r.Gradominusvalia REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
                     break;
 
                 case '?':
                     if (key === 'nombre') {
-                        baseQuery += ` and p.namePlace REGEXP ?`;
+                        baseQuery += ` and p.Nombre REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
                     else if (key === 'tipositio') {
-                        baseQuery += ` and p.tipo REGEXP ?`;
+                        baseQuery += ` and p.Tipo REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
                     else if (key === 'tipodiscapacidad') {
-                        baseQuery += ` and r.tipoDiscapacidad REGEXP ?`;
+                        baseQuery += ` and r.Tipominusvalia REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
                     else if (key === 'gradodiscapacidad') {
-                        baseQuery += ` and r.gradoDiscapacidad REGEXP ?`;
+                        baseQuery += ` and r.Gradominusvalia REGEXP ?`;
                         arrayValues.push(filter[key])
                     }
 
