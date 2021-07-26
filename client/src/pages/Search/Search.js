@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { appContext } from '../../context/appContext'
 import axios from 'axios'
+import './Search.css'
 
 import But from '../../components/But/But'
 
@@ -68,7 +69,7 @@ function Search() {
         if (datalist.length > 0) {
             return datalist.map((elem, i) =>
 
-                <option key={i} value={elem.nombre} />
+                <option key={i} value={elem.Nombre} className="datalist" />
             )
         }
     }
@@ -76,9 +77,9 @@ function Search() {
     return (
         <div>
             <input type="text" name="nombre" list='places' id="nombre" placeholder='¿Que sitio quieres ver?' onChange={handleInput} />
-            <datalist id='places'>
+            <datalist id='places'className="datalist">
                 {optionDatalist()}
-            </datalist>
+            </datalist >
             <But click={handleclick} value='museo' />
             <But click={handleclick} value='galeria' />
             <But click={handleclick} value='teatro' />

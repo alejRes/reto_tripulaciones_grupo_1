@@ -6,6 +6,7 @@ function Login() {
 
     const [user, setUser] = useState({})
     const [empty, setEmpty] = useState(true)
+    const [error, setError] = useState(false)
 
 
     const [valEmail, setvalEmail] = useState(true);
@@ -51,6 +52,8 @@ function Login() {
             if (respuesta.status === 200) {
                 setUserOk(respuesta.data.user)
                 setLogin(true)
+            }else{
+                setError(true)
             }
         }
     }
@@ -74,7 +77,8 @@ function Login() {
             <form >
                 <input type="text" name='email' placeholder='Introduce el correo electronico' onChange={onChangeInput} />
                 <input type="password" name='password' placeholder='Introduce contraseña' onChange={onChangeInput} />
-                {empty ? <p>Rellena los campos</p> : <></>}
+                {empty? <p>Rellena los campos</p> : <></>}
+                {error? <p>Usuario o contraseña incorrecto </p>:<></>}
                 <button onClick={sendLogin}>Enviar</button>
                 
             </form>

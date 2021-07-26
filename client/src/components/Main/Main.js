@@ -4,6 +4,7 @@ import Login from '../../pages/Login/Login'
 import SignUp from '../../pages/SignUp/SignUp'
 import Search from '../../pages/Search/Search'
 import ReviewSearch from '../../pages/ReviewSearch/ReviewSearch'
+import AddReviews from '../../pages/AddReviews/AddReviews'
 
 
 function Main() {
@@ -14,6 +15,7 @@ function Main() {
                 <Route path ='/signup' component={SignUp}/>
                 <Route path ='/search' component={Search}/>
                 <Route path ='/reviews' component={ReviewSearch}/>
+                <Route path ='/addreviews' component={AddReviews}/>
             </Switch>
         </div>
     )

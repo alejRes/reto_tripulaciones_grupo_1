@@ -39,15 +39,15 @@ const userController = {
     loginUser: async ({ body }, res) => {
 
         const { password, email } = body;
-
+        console.log(`body`, body)
         try {
 
             let encryptPass = SHA256(password)
             let response = await User.getUser([email, JSON.stringify(encryptPass.words)])
             if (response[0].c === 1) {
-                const token = jwt.sign({ email, nombre: response[0].nombre }, process.env.SECRET_KEY)
+                const token = jwt.sign({ email }, process.env.SECRET_KEY)
                 res.cookie('token', token, { httpOnly: true })
-                res.status(200).json({ message: "bienvenido user", user: { email: response[0].email, name: response[0].nombre } })
+                res.status(200).json({ message: "bienvenido user", user: { email } })
             } else {
                 res.status(203).json({ message: "password o usuario incorrecto" })
             }
@@ -106,6 +106,37 @@ const userController = {
         } catch (error) {
 
         }
+    },
+
+    insertReview:  async(req, res)=>{
+
+        console.log(`req.body`, req.body)
+
+        const {nombreSitio, tipoDiscapacidad, gradoDiscapacidad, opinion, huecoPasillo, GiroSillas, Rampas, Escaleras, Ascensores, Parking, BarraBano, Banio, valoracion, email} = req.body;
+
+        let review = [opinion, valoracion, tipoDiscapacidad, gradoDiscapacidad, nombreSitio]
+
+        !huecoPasillo? review.push(0): review.push(1)
+        !GiroSillas? review.push(0): review.push(1)
+        !Rampas? review.push(0): review.push(1)
+        !Escaleras? review.push(0): review.push(1)
+        !Ascensores? review.push(0): review.push(1)
+        !Parking? review.push(0): review.push(1)
+        !BarraBano? review.push(0): review.push(1)
+        !Banio? review.push(0): review.push(1)
+
+        review = [...review, email]
+
+        console.log(`review`, review)
+        try {
+            
+            let response = await User.insertReview(review)
+            res.status(200).json({response, message:"Opinion envia con exito"})
+
+        } catch (error) {
+            
+        }
+        
     }
 
 
