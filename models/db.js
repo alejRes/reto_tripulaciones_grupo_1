@@ -47,13 +47,13 @@ const User = {
     },
 
     getUser: async (userlogin) => {
-
+        console.log(`userlogin`, userlogin)
         let conn, result;
 
         try {
 
             conn = await pool.getConnection();
-            let query = `SELECT *, count(Username) as c FROM USER WHERE Email = ? and Password = ?`
+            let query = `SELECT count(Username) as c, Email FROM USER WHERE Email = ? and Password = ?`
             result = await conn.query(query, userlogin)
 
         } catch (error) {
@@ -150,7 +150,26 @@ const User = {
         }
         return result
 
+    },
+    insertReview: async (review)=>{
+        console.log(`review`, review)
+        let conn, result;
+
+        try {
+            conn = await pool.getConnection()
+            let query = 'INSERT INTO REVIEWS (Opinion, Puntuacion, Tipominusvalia, Gradominusvalia, Nombre, Anchurapuerta, Giropasillo, Rampas, Escaleras, Ascensores, Parking, Barrabaño, Bañoadaptado, Userid) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT Userid FROM USER WHERE Email = ?))'
+            result = await conn.query(query,review)
+            
+        } catch (error) {
+            result = {error}
+        }finally{
+            if(conn)
+                conn.end()
+        }
+        console.log(`result`, result)
+        return result
     }
+
 }
 
 module.exports = User;
