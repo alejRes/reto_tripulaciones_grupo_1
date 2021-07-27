@@ -1,0 +1,23 @@
+.Navegacion{
+    display:flex;
+    justify-content: space-around;  
+    width: 23.4375em;  
+}
+.img{
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 1em;
+}
+.p{
+    margin-top: 0;
+    font-size: 16px;
+}
+.button{
+    margin-top: 0.5em;
+    background-color: #F9EBED;
+    border: none;
+
+}
+.button:hover{
+    border-top: 0.5em solid #B03648;
+}
