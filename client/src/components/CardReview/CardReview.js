@@ -12,7 +12,7 @@ function CardReview(props) {
         setLleno(!lleno)
     }
 
-    console.log(`props`, props)
+    
     return (
         <article onClick={() => { props.detail(props.data.Reviewsid) }}>
             <p>{props.data.Nombre}</p>

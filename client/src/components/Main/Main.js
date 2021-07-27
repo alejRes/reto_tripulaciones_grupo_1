@@ -6,6 +6,7 @@ import Search from '../../pages/Search/Search'
 import ReviewSearch from '../../pages/ReviewSearch/ReviewSearch'
 import AddReviews from '../../pages/AddReviews/AddReviews'
 import DetailReview from '../../pages/DetailReview/DetailReview'
+import DetailPlace from '../../pages/DetailPlace/DetailPlace'
 
 function Main() {
     return (
@@ -17,6 +18,7 @@ function Main() {
                 <Route path ='/reviews' component={ReviewSearch}/>
                 <Route path ='/addreviews' component={AddReviews}/>
                 <Route path ='/detail/:id' component={DetailReview}/>
+                <Route path ='/detailPlace/:nombre' component={DetailPlace}/>
             </Switch>
         </div>
     )

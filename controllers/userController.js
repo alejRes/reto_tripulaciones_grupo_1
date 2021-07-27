@@ -137,9 +137,30 @@ const userController = {
             
         }
         
+    },
+    getDetail: async({body},res)=>{
+        const {id}=body
+        console.log(`id`, id)
+        try {
+            let response = await User.getDetail(id)
+            res.status(200).json(response)
+        } catch (error) {
+            
+        }
+    },
+
+    getDetailPlace:async(req,res)=>{
+        
+        const {nombre} = req.body
+        
+        try {
+            let response = await User.getDetailPlace(nombre)
+            res.status(200).json(response)
+            console.log(`response`, response)
+        } catch (error) {
+            
+        }
     }
-
-
 
 }
 module.exports = userController;

@@ -72,16 +72,25 @@ function Login() {
 
     }, [login])
 
+    const toSignUp =()=>{
+
+        history.push('/signup')
+
+    }
+
     return (
         <>
             <form >
                 <input type="text" name='email' placeholder='Introduce el correo electronico' onChange={onChangeInput} />
                 <input type="password" name='password' placeholder='Introduce contraseña' onChange={onChangeInput} />
                 {empty? <p>Rellena los campos</p> : <></>}
+                
                 {error? <p>Usuario o contraseña incorrecto </p>:<></>}
+                
                 <button onClick={sendLogin}>Enviar</button>
                 
             </form>
+            <button onClick={toSignUp}>¿No tienes cuenta? Registrate</button>
             <button onClick={redirect}>Accede como invitado</button>
         </>
     )

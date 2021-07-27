@@ -168,7 +168,41 @@ const User = {
         }
         console.log(`result`, result)
         return result
-    }
+    },
+    getDetail: async(id) =>{
+        let conn, result
+
+        try {
+            conn = await pool.getConnection();
+            let query = 'SELECT r.*, p.Direccion, p.Foto, u.Username  FROM REVIEWS AS r INNER JOIN PLACES AS p ON r.Nombre=p.Nombre INNER JOIN USER AS u ON r.Userid = u.Userid WHERE r.Reviewsid = ?' 
+            result = await conn.query(query,[id])
+        } catch (error) {
+            result = {error}
+        }finally{
+            if(conn){
+                conn.end()
+            }
+        }
+        console.log(`result`, result)
+        return result
+    },
+     getDetailPlace: async(nombreSitio)=>{
+        let conn, result
+
+        try {
+            conn = await pool.getConnection();
+            let query = 'SELECT * FROM PLACES WHERE Nombre = ?' 
+            result = await conn.query(query,[nombreSitio])
+        } catch (error) {
+            result = {error}
+        }finally{
+            if(conn){
+                conn.end()
+            }
+        }
+        return result;
+
+     }
 
 }
 
