@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TagManager from "react-gtm-module";
+import "@fontsource/atkinson-hyperlegible";
 // GOOGLE TAG MARKER
 const tagManagerArgs = {
   gtmId: "GTM-P3B2K24",

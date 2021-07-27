@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { appContext } from '../../context/appContext'
 import CardReview from '../../components/CardReview/CardReview'
 
 function ReviewSearch() {
 
     const { search } = useContext(appContext)
-
+    let history = useHistory()
     const getDetailReview =(idreview)=>{
-        console.log(`idreview`, idreview)
+        history.push(`/Detail/${idreview}`)
     }
 
     const paintSearch = () => {

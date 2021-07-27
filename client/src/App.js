@@ -8,11 +8,14 @@ import Footer from './components/Footer/Footer';
 
 function App() {
 
-  const [userOk, setUserOk] = useState({email:"juanpablo@hotmail.com"})
+  const [userOk, setUserOk] = useState({email:"jfojforj"})
   const [login, setLogin] = useState(false)
   const [search, setSearch] = useState([])
+  const [idDetail, setIdDetail] = useState("")
   
   const value = {
+    idDetail,
+    setIdDetail,
     userOk,
     setUserOk,
     login,
