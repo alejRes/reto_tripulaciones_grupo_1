@@ -44,7 +44,7 @@ function DetailPlace() {
             {/* <p>{place.Coordenadas}</p> */}
 
             <img src={Mapa} alt="Mapa" />
-            <button className='btnVolver2' onClick={regresar}> <img src={Flecha} alt="Volver" /> </button>
+            <button className='btnVolver2' onClick={regresar}> <img src={Flecha} alt="Volver a reseña" /> </button>
             <section className='info'>
                 <div>
                     <p className='ptitle'>{place.Nombre}</p>
