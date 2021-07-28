@@ -7,10 +7,11 @@ import ReviewSearch from '../../pages/ReviewSearch/ReviewSearch'
 import AddReviews from '../../pages/AddReviews/AddReviews'
 import DetailReview from '../../pages/DetailReview/DetailReview'
 import DetailPlace from '../../pages/DetailPlace/DetailPlace'
+import './Main.css'
 
 function Main() {
     return (
-        <div>
+        <div className='Main'>
             <Switch>
                 <Route path ='/' component={Login} exact/>
                 <Route path ='/signup' component={SignUp}/>
