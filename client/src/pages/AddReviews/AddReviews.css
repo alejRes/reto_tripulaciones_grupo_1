@@ -5,6 +5,18 @@
 .star{
     cursor:pointer;
     transition: color 200ms;
+    margin-bottom: 4em;
+    
+}
+.stars{
+    background-color: #B03648;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 21.5625em;
+}
+.stars>h3{
+    color: #F9EBED;
 }
 
 .formreview{
@@ -17,7 +29,6 @@
 }
 .cabece>img{
     position: absolute;
-    
     top:2em;
     left:2em;
 }
@@ -54,14 +65,34 @@
 }
 .checkbox{
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
-}
-.checkbox>div{
-    margin-right: 15em;
-    margin-bottom: 1em;
-}
-.checkbox>label{
-    
+    margin-top: 1em;
+    justify-content: space-around;
+    margin-bottom: 2em;
 }
 
+.checkbox>article>div{
+    margin-bottom: 2em
+}
+.checkbox>article>label{
+    margin-right: 1em;
+}
+input[type='submit']{
+    margin: 1em 0 7em 0em;
+    width: 15em;
+    height: 5em;
+    background-color: #F9EBED;
+    border: 0.1em solid #B03648;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 6px 3px  #F9EBED;
+    color: #B03648;
+    font-weight: bold;
+    font-size: 1em;
+}
+.btnEnv{
+    margin-top: -1em;
+    display: flex;
+    justify-content: center;
+    width: 21.5625em;
+    background-color: #B03648;
+}

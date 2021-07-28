@@ -116,58 +116,71 @@ export default function AddReviews() {
                 <h3>¿Cumplían las instalaciones con alguna de estas características</h3>
                 <p>*Marca las casillas que consideres convenientes</p>
                 <section className='checkbox'>
-                    <div>
-                        <input type="checkbox" id="HuecoPasillo" value={1} {...register("huecoPasillo")} /><label htmlFor="HuecoPasillo">Anchura de las puertas</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="GiroSillas" value={1} {...register("GiroSillas")} /><label htmlFor="GiroSillas">Radio de giro</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="Rampas" value={1} {...register("Rampas")} /><label htmlFor="Rampas">Rampas</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="Escaleras" value={1} {...register("Escaleras")} /><label htmlFor="Escaleras">Escaleras</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="Ascensores" value={1} {...register("Ascensores")} /><label htmlFor="Ascensores">Ascensores</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="Parking" value={1} {...register("Parking")} /><label htmlFor="Parking">Parking</label>
+                    <article>
+                        <div>
+                            <input type="checkbox" id="HuecoPasillo" value={1} {...register("huecoPasillo")} /><label htmlFor="HuecoPasillo">Ancho de puertas</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="GiroSillas" value={1} {...register("GiroSillas")} /><label htmlFor="GiroSillas">Radio de giro</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Rampas" value={1} {...register("Rampas")} /><label htmlFor="Rampas">Rampas</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Escaleras" value={1} {...register("Escaleras")} /><label htmlFor="Escaleras">Escaleras</label>
+                        </div>
+                    </article>
+                    <article>
+                        <div>
+                            <input type="checkbox" id="Ascensores" value={1} {...register("Ascensores")} /><label htmlFor="Ascensores">Ascensores</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Parking" value={1} {...register("Parking")} /><label htmlFor="Parking">Parking</label>
 
-                    </div>
-                    <div>
-                        <input type="checkbox" id="BarraBano" value={1} {...register("BarraBano")} /><label htmlFor="BarraBano">Barra de soporte</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="Banio" value={1} {...register("Banio")} /><label htmlFor="BarraBano">Baños adaptados</label>
-                    </div>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="BarraBano" value={1} {...register("BarraBano")} /><label htmlFor="BarraBano">Barra de soporte</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="Banio" value={1} {...register("Banio")} /><label htmlFor="BarraBano">Baños adaptados</label>
+                        </div>
+                    </article>
                 </section>
 
                 <div className="stars">
                     <h3>¿Cómo valoras esta experiencia?</h3>
-                    {
-                        [...Array(5)].map((star, i) => {
-                            const ratingValue = i + 1;
-                            return <label key={i}>
-                                <input type="radio" name="rating"
-                                    value={ratingValue}
-                                    onClick={
-                                        () => setRating(ratingValue)
-                                    }
-                                /* onClick={() =>{ return { ...register("valoracion") }}} */
-                                />
-                                <FaStar className="star"
-                                    size={30}
-                                    color={
-                                        ratingValue <= rating ? "#ffc107" : "#e4e5e9"
-                                    }
-                                /*color={ratingValue <= {...register("valoration")} ? "#ffc107" : "#e4e5e9"} */
-                                />
-                            </label>
-                        })
-                    }
+                    <div>
+                        {
+                            [...Array(5)].map((star, i) => {
+                                const ratingValue = i + 1;
+                                return <label key={i}>
+                                <input tabIndex='0' type="radio" name="rating"
+                                        value={ratingValue}
+                                        onClick={
+                                            () => setRating(ratingValue)
+                                        }
+                                        onKeyPress={
+                                            () => setRating(ratingValue)
+                                        }           
+                                    /* onClick={() =>{ return { ...register("valoracion") }}} */
+                                    />
+                                    <FaStar className="star"
+                                        size={30}
+                                        color={
+                                            ratingValue <= rating ? "#ffc107" : "#e4e5e9"
+                                        }
+                                    /*color={ratingValue <= {...register("valoration")} ? "#ffc107" : "#e4e5e9"} */
+                                    />
+                                </label>
+                            })
+                        }
+                    </div>
+
                 </div>
-                <input type="submit" />
+                <div className='btnEnv'>
+                   <input type="submit" value='Publica tu respuesta'/>
+                </div>
+                
             </form>
         </>
 

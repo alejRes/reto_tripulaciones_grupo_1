@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react'
 import { appContext } from '../../context/appContext'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
+import Logo from '../../images/logo.png'
+import './Login.css'
 function Login() {
 
     const [user, setUser] = useState({})
@@ -79,20 +81,21 @@ function Login() {
     }
 
     return (
-        <>
-            <form >
-                <input type="text" name='email' placeholder='Introduce el correo electronico' onChange={onChangeInput} />
-                <input type="password" name='password' placeholder='Introduce contraseña' onChange={onChangeInput} />
-                {empty? <p>Rellena los campos</p> : <></>}
+        <div className='login'>
+            <img src={Logo} alt="logo" />
+            <form className='login'>
+                <input className='inputtext' type="text" name='email' placeholder='Introduce el correo electronico' onChange={onChangeInput} />
+                <input className='inputtext' type="password" name='password' placeholder='Introduce contraseña' onChange={onChangeInput} />
+                {empty? <p className='aviso'>Introduce usuario y contraseña</p> : <></>}
                 
-                {error? <p>Usuario o contraseña incorrecto </p>:<></>}
+                {error? <p className='aviso'>Usuario o contraseña incorrecto </p>:<></>}
                 
-                <button onClick={sendLogin}>Enviar</button>
+                <button className='btnenviar' onClick={sendLogin}>Inicia sesion</button>
                 
             </form>
-            <button id='usuarionuevo'onClick={toSignUp}>¿No tienes cuenta? Registrate</button>
-            <button id='invitado'onClick={redirect}>Accede como invitado</button>
-        </>
+            <button className='btnregistro'id='usuarionuevo'onClick={toSignUp}>¿No tienes cuenta? Registrate</button>
+            <button className='btninvitado' id='invitado'onClick={redirect}>Accede como invitado</button>
+        </div>
     )
 }
 
