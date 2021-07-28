@@ -1,0 +1,72 @@
+.lista2{
+    background-color: #B03648;
+    margin:0em 1em 0em 1em ;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    padding: 0 0 0 1em;
+    flex-flow: row wrap;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow:2px 2px 0px 1px #d1d1d1;
+}
+.lista2>li{
+    margin-right: 6em;
+    flex-wrap: wrap;
+    color:#F9EBED;
+    font-family: sans-serif;
+    padding: 0%;
+    margin:0.75em 0.75em;
+    font-size: 1em;
+    
+}
+.parrafo2{
+    width: 12.25em;
+    margin: 1em 0em -0.75em 0.9em;
+    padding: 0.5em 0.5em 1em 0.5em;
+    color: #F9EBED;
+    background-color:#B03648;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+.btnVolver2{
+    width: 3em;
+    height: 3em;
+    border-radius: 3em;
+    background-color: #B03648;
+    border: none;
+    position: absolute;
+    top:2.5em;
+    right: 2.5em;
+
+}
+.pielista{
+    display:flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.25em;
+    width: 21.4375em;
+    height: 2em;
+    margin: -0.5em 1em 1em 1em ;
+    font-size: 1em;
+    color:#B03648;
+    background-color: #F9EBED;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    text-align: center;
+    box-shadow:2px 2px 0px 1px #d1d1d1;
+}
+.info{
+    display:flex;
+    justify-content: space-between;
+    background-color: #F9EBED;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow:2px 2px 0px 1px #d1d1d1;
+    margin:1em 1em;
+}
+.btnContact{
+    width: 3em;
+    border: none;
+    background-color: #F9EBED;
+}
+
+
+
+

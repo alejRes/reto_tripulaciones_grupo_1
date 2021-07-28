@@ -1,9 +1,10 @@
 import React from 'react'
-
+import Nav from '../Nav/Nav'
+import './Footer.css'
 function Footer() {
     return (
-        <div>
-            
+        <div className='Footer'>
+            <Nav/>
         </div>
     )
 }
