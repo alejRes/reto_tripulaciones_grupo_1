@@ -15,13 +15,16 @@ import './Detail.css'
 function DetailReview() {
     const { id } = useParams()
 
-    const { setIdDetail } = useContext(appContext)
+    const { setIdDetail, userOk } = useContext(appContext)
 
     const [detail, setDetail] = useState({})
 
     const [lleno, setLleno] = useState(false)
 
     const favorites = () => {
+        if(userOk.email==='false'){
+            history.push('/')
+        }
         setLleno(!lleno)
     }
 
@@ -54,8 +57,8 @@ function DetailReview() {
                         <p>{detail.Username ? detail.Username[0] : <></>}</p>
                     </div>
                     <div>
-                        <p className='ptitle'>{detail.Username}</p>
-                        <p>{detail.Tipominusvalia } / {detail.Gradominusvalia == 33 ? "< 33%" : detail.Gradominusvalia == 55 ? "33% - 66%" : "> 66%"}</p>
+                        <p className='ptitle color'>{detail.Username}</p>
+                        <p className='color'>{detail.Tipominusvalia } / {detail.Gradominusvalia == 33 ? "< 33%" : detail.Gradominusvalia == 55 ? "33% - 66%" : "> 66%"}</p>
                     </div>
                     <button onClick={changetoSearchReview} value='Volver' className='btnVolver'> <img src={Flecha} alt="volver" /></button>
                 </section>
