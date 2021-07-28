@@ -1,0 +1,8 @@
+.normal{
+    background-color: aliceblue;
+    color: black;
+}
+.pulsado{
+    background-color: rgb(146, 76, 19);
+    color: rgb(247, 245, 245);
+}

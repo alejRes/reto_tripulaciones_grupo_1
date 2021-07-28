@@ -1,0 +1,77 @@
+.Card{
+    background-color: #B03648;
+    width: 21.4375em;
+    margin: 1em;
+    border-radius: 1em;
+    box-shadow:2px 2px 0px 1px #d1d1d1;
+    z-index: 0;
+}
+
+.btnfav{
+    
+    width: 4em;
+    height: 4em;
+    border-radius: 4em;
+    border:none;
+    background-color: #F9EBED;
+    box-shadow:  1px 2px 2px #d1d1d1;
+    padding-bottom: 0.5em;
+}
+.btnfav>img{
+    width: 2.5em;
+    margin-top: 1em;
+}
+
+.footCard{
+    display: flex;
+    align-items: center;
+    
+}
+.footCard>div{
+    width: 14em;
+    margin: 1em 2em 1em 1em;
+    color: #F9EBED;
+}
+.footCard>img{
+    margin: 1em 1em 0em 4em;
+}
+.tamanio{
+    font-size: 1.5em;
+}
+.avatar3{
+    display:flex;
+    height: 1.5em;
+    width: 1.5em;
+    background-color: #F9EBED;
+    border-radius: 2em;
+    
+    margin-right: 0.5em;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 1em; */
+
+    color: #B03648;
+    font-size: 2em;
+}
+.entrada3{
+    display: flex;
+    padding: 1em 0.5em;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1empx;
+}
+.infouser{
+    margin: 0px
+}
+.infouser>p{
+    color:#F9EBED
+}
+.star{
+    border:0em;
+    margin:0em;
+    padding: 0em;
+}
+.imgSitio{
+    width:343px;
+     height:200px
+}
