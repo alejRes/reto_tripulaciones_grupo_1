@@ -82,7 +82,7 @@ function Login() {
 
     return (
         <div className='login'>
-            <img src={Logo} alt="logo" />
+            <img className='imglogin' src={Logo} alt="logo" />
             <form className='login'>
                 <input className='inputtext' type="text" name='email' placeholder='Introduce el correo electronico' onChange={onChangeInput} />
                 <input className='inputtext' type="password" name='password' placeholder='Introduce contraseña' onChange={onChangeInput} />
