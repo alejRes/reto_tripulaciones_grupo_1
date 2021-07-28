@@ -1,0 +1,55 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em;
+    height: 80vh;
+}
+
+.imglogin{
+    width: 10em;
+    margin: 1em 0 3em;
+}
+.inputtext{
+    width: 25em;
+    height: 2em;
+    border-radius: 1em;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.aviso{
+    color: #B03648;
+    font-size: 1em;
+    font-weight: 700;
+    
+}
+.btnenviar{
+    margin-top: 3em;
+    height: 4em;
+    width: 12em;
+    color: #F9EBED;
+    background-color: #B03648;
+    border-radius: 0.5em;
+    font-size: 0.8em;
+    font-weight: 600;
+
+}
+.btnregistro{
+    border: none;
+    background-color: white;
+    color:#B03648 ;
+    font-size: 1em;
+    font-weight: 600;
+}
+.btninvitado{
+    margin-top: 3em;
+    width: 19em;
+    height: 10em;
+    color:#B03648;
+    border-radius: 0.5em;
+    font-size: 1em;
+    font-weight: 600;
+    border: 0.1em solid #B03648;
+    background-color: #F9EBED;
+}

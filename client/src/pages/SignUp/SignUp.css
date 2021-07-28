@@ -1,0 +1,25 @@
+.signup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em;
+    height: 80vh;
+}
+
+.imgsign{
+    width: 10em;
+    margin: 1em 6.5em 2em ;
+}
+
+.send{
+    
+    margin-top: 3em;
+    height: 4em;
+    width: 12em;
+    color: #F9EBED;
+    background-color: #B03648;
+    border-radius: 0.5em;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
