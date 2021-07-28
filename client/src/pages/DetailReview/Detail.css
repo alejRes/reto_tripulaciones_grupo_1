@@ -1,12 +1,12 @@
-
 .lista{
     background-color: #B03648;
-    margin:0px 16px 62px 16px ;
+    margin:0em 1em 5.625em 1em ;
     display: flex;
     justify-content: center;
     padding: 0px;
     flex-flow: row wrap;
-    border-radius: 8px 8px 8px 8px;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow:2px 2px 0px 1px #d1d1d1;
 }
 .lista>li{
     color:#F9EBED;
@@ -30,9 +30,107 @@
 
 .parrafo{
     width: 6.25em;
-    margin: 1em 0em -0.75em 1em  ;
+    margin: 1em 0em -0.75em 0.9em  ;
     padding: 0.5em 0.5em 1em 0.5em;
     color: #F9EBED;
     background-color:#B03648;
     border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+.img{
+    width: 2em;
+    height: 2em;
+}
+.butInfo{
+    width: 3.5em;
+    height: 3.5em;
+    border:none;
+    background-color: #F9EBED;
+    margin: 1em;
+}
+.btnfavorito{
+    width: 4em;
+    height: 4em;
+    border-radius: 4em;
+    border:none;
+    background-color: #F9EBED;
+    box-shadow:  3px 2px 4px #d1d1d1;
+    position: absolute;
+    right: 2em;
+    top:16em;
+}
+.ptitle{
+    font-weight: bold;
+    font-size: 1.5em;
+    width: 225px;
+}
+.cuerpo{
+    background-color:#F9EBED;
+    margin: 0.25em 0.75em;
+    padding: 0.5em 0.75em;
+    border-radius: 1em ;
+    box-shadow:2px 2px 0px 1px #d1d1d1;
+}
+.cabecera{
+    margin-bottom: 1em;
+    display:flex;
+    
+}
+.foto{
+    width: 375px;
+    height: 137px;
+    min-height: 100%;
+}
+.estrellas{
+    background: rgba(47, 14, 19, 0.54);
+    width: 5em;
+    padding:0;
+    border-radius: 0.5em;
+    position: absolute;
+    left:1em;
+    top: 12.5em;
+}
+.btnfavorito>img{
+    width: 2em;
+    right: 1em;
+}
+.btnVolver{
+    width: 3em;
+    height: 3em;
+    border-radius: 3em;
+    background-color: #F9EBED;
+    border: none;
+    margin-right: 1em;
+}
+.btnVolver>img{
+    width: 1.5em;
+    margin-top: 0.5em;
+}
+.entrada{
+    display:flex;
+    width: 23.4375em;
+    height: 6.0625em;
+    background-color: #B03648;
+    justify-content: center;
+    align-items: center;
+}
+.avatar{
+    display:flex;
+    height: 3.5em;
+    width: 3.5em;
+    background-color: #F9EBED;
+    border-radius: 3.5em;
+    margin-right: 2em;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+}
+.avatar>p{
+    color: #B03648;
+    font-size: 2em;
+    
+}
+p{
+    text-align: justify;
+    font-size: 1.1em;
+    margin:0em 0.0em;
 }
