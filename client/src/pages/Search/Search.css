@@ -1,0 +1,41 @@
+.search{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+}
+
+.disc{
+    
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 1em 0;
+
+}
+.disc>select{
+    margin: 1em;
+    width: 11em;
+    height: 3em;
+    border-radius: 3em;
+}
+
+.imgLupa{
+    
+    height: 3.5em;
+    width: 3.5em;
+    border-radius: 3em;
+    background-color: #B03648;
+    border:none;
+    box-shadow:  3px 3px 3px 4px #523e3e;
+}
+.imgLupa>img{
+    width: 2em;
+}
+.aviso2{
+    margin-top: 1em;
+    color: #B03648;
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: 600;
+}

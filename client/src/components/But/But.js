@@ -8,7 +8,7 @@ function But(props) {
         setActive(!active)
     }
     return (
-        <button onClick = {buttonClick} value={props.value} className={!active?'normal':'pulsado'}>{props.value}</button>
+        <button /* className='check '*/ onClick = {buttonClick} value={props.value} className={!active?'normal check':'pulsado check' }>{props.value}</button>
     )
 }
 

@@ -1,8 +1,18 @@
 .normal{
-    background-color: aliceblue;
-    color: black;
+    background-color: #F9EBED;
+    color: #B03648;
+    border:0.1em solid #B03648;
 }
 .pulsado{
-    background-color: rgb(146, 76, 19);
-    color: rgb(247, 245, 245);
+    background-color: #B03648;
+    color:#F9EBED
+}
+
+.check{
+    width: 8em;
+    height: 2em;
+    border-radius: 3em;
+    margin: 0.5em 0.6em;
+    font-size: 0.8em;
+    font-weight: 600;
 }

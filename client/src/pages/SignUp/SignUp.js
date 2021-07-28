@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react'
 import { appContext } from '../../context/appContext'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
+import Logo from '../../images/logo.png'
+import './SignUp.css'
 function SingUp() {
     const [user, setUser] = useState({})
     const [valName, setvalName] = useState(true);
@@ -28,7 +30,7 @@ function SingUp() {
     const sendSignUp = async(e) => {
         let countchecks = 0;
         e.preventDefault()
-        if(user){
+        if(user.name&&user.email&&user.password&&user.passwordConfirmation){
         
             for (const key in user) {
     
@@ -91,17 +93,18 @@ function SingUp() {
 
     return (
         <>
-            <form>
-                <input type="text" name='username' placeholder='nombre' onChange={onChangeInput}></input>
+            <img className='imgsign' src={Logo} alt="logo" />
+            <form className='signup'>
+                <input className='inputtext' type="text" name='username' placeholder='nombre usuario' onChange={onChangeInput}></input>
                 {valName ? <></> : <p>el nombre debe tener al menos 5 caracteres</p>}
-                <input type="email" name='email' placeholder='email' onChange={onChangeInput}></input>
+                <input className='inputtext' type="email" name='email' placeholder='email' onChange={onChangeInput}></input>
                 {valEmail ? <></> : <p>email no valido</p>}
-                <input type="password" name='password' placeholder='password' onChange={onChangeInput}></input>
-                <input type="password" name='passwordConfirmation' placeholder='repetir password' onChange={onChangeInput}></input>
-                {valCompare ? <></> : <p>Las contraseñas no coinciden</p>}
-                {valPass ? <></> : <p>debe tener mayuscula, minuscula, numero y 8-16 caracteres</p>}
-                {empty? <p>no se admiten campos vacios</p>: <></> }
-                <button value="Enviar" onClick={sendSignUp} onKeyPress={sendSignUp}>Enviar</button>
+                <input className='inputtext' type="password" name='password' placeholder='password' onChange={onChangeInput}></input>
+                <input className='inputtext' type="password" name='passwordConfirmation' placeholder='repetir password' onChange={onChangeInput}></input>
+                {valCompare ? <></> : <p className='aviso2'>Las contraseñas no coinciden</p>}
+                {valPass ? <></> : <p className='aviso2'>debe tener mayuscula, minuscula, numero y 8-16 caracteres</p>}
+                {empty? <p className='aviso2'>no se admiten campos vacios</p>: <></> }
+                <button className='send' value="Enviar" onClick={sendSignUp} onKeyPress={sendSignUp}>Enviar</button>
             </form>
         </>
     )
