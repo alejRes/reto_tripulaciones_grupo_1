@@ -1,5 +1,4 @@
 .lista2{
-    
     background-color: #B03648;
     margin:0em 1em 0em 1em ;
     display: flex;
@@ -62,7 +61,7 @@
     box-shadow:2px 2px 0px 1px #d1d1d1;
     margin:1em 1em;
 }
-button{
+.btnContact{
     width: 3em;
     border: none;
     background-color: #F9EBED;

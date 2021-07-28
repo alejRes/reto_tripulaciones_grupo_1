@@ -50,9 +50,9 @@ function DetailPlace() {
                     <p className='ptitle'>{place.Nombre}</p>
                     <p>{place.Direccion}</p>
                 </div>
-                <button> <img src={Telefono} alt="Telefono" /> </button>
-                <button> <img src={Globo} alt="Sitio web" /> </button>
-                <button> <img src={Compartir} alt="Compartir" /> </button>
+                <button className='btnContact' value='telefono'> <img src={Telefono} alt="Telefono" /> </button>
+                <button className='btnContact' value='Sitio web' > <img src={Globo} alt="Sitio web" /> </button>
+                <button className='btnContact' value='Compartir'> <img src={Compartir} alt="Compartir" /> </button>
                
             </section>
 
