@@ -90,8 +90,8 @@ function Login() {
                 <button onClick={sendLogin}>Enviar</button>
                 
             </form>
-            <button onClick={toSignUp}>¿No tienes cuenta? Registrate</button>
-            <button onClick={redirect}>Accede como invitado</button>
+            <button id='usuarionuevo'onClick={toSignUp}>¿No tienes cuenta? Registrate</button>
+            <button id='invitado'onClick={redirect}>Accede como invitado</button>
         </>
     )
 }

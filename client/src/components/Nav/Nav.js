@@ -34,7 +34,7 @@ function Nav() {
                 <img src={lupa} alt="ir a busqueda" className='img'/>
                 <p className='p'>Explorar</p> 
             </button>
-            <button value='Reseñas' onClick={changePage} className='button'>
+            <button id='reseña' value='Reseñas' onClick={changePage} className='button'>
                 <img src={anadir} alt="ir a meter Reseña" className='img'/>
                 <p className='p'>Reseñas</p> 
             </button>

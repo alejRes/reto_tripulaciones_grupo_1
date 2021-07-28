@@ -80,20 +80,20 @@ function Search() {
             <datalist id='places'className="datalist">
                 {optionDatalist()}
             </datalist >
-            <But click={handleclick} value='museo' />
-            <But click={handleclick} value='galeria' />
-            <But click={handleclick} value='teatro' />
-            <But click={handleclick} value='exposiciones' />
-            <But click={handleclick} value='sala' />
-            <But click={handleclick} value='monumento' />
-            <But click={handleclick} value='parque' />
-            <But click={handleclick} value='mercado' />
+            <But click={handleclick} value='museo' id='museos'/>
+            <But click={handleclick} value='galeria' id='galerías'/>
+            <But click={handleclick} value='teatro' id='teatro'/>
+            <But click={handleclick} value='exposiciones' id='exposiciones'/>
+            <But click={handleclick} value='sala' id='salasdemusica'/>
+            <But click={handleclick} value='monumento' id='monumentos'/>
+            <But click={handleclick} value='parque' id='parques'/>
+            <But click={handleclick} value='mercado' id='mercados'/>
             <select name="Discapacidad" id="" onChange={handleSelectDisc}>
                 <option value="">Discapacidad</option>
-                <option value="visual" >Visual</option>
-                <option value="fisica">Fisica</option>
-                <option value="intelectual">Intelectual</option>
-                <option value="auditiva">Auditiva</option>
+                <option id='visual' value="visual" >Visual</option>
+                <option id='motora' value="fisica">Fisica</option>
+                <option id='intelectual' value="intelectual">Intelectual</option>
+                <option id='auditiva 'value="auditiva">Auditiva</option>
             </select>
             <select name="Grado" id="" onChange={handleSelectGrado}>
                 <option value="">Grado</option>
