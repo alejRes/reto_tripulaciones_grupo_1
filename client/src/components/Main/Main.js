@@ -7,6 +7,7 @@ import ReviewSearch from '../../pages/ReviewSearch/ReviewSearch'
 import AddReviews from '../../pages/AddReviews/AddReviews'
 import DetailReview from '../../pages/DetailReview/DetailReview'
 import DetailPlace from '../../pages/DetailPlace/DetailPlace'
+import Favorito from '../../pages/Favorites/Favotire'
 import './Main.css'
 
 function Main() {
@@ -20,6 +21,7 @@ function Main() {
                 <Route path ='/addreviews' component={AddReviews}/>
                 <Route path ='/detail/:id' component={DetailReview}/>
                 <Route path ='/detailPlace/:nombre' component={DetailPlace}/>
+                <Route path ='/favoritos' component={Favorito}/>
             </Switch>
         </div>
     )
