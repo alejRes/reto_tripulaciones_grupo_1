@@ -41,7 +41,7 @@ function Nav() {
                 <p id='Reseñas'className='p'onKeyPress={changePage}onClick={changePage}>Reseñas</p> 
             </button>
             <button value='Favoritos'className='button'>
-                <img src={favorito} alt="ir a favoritos"/>
+                <img src={favorito} alt="ir a favoritos"className='img'/>
                 <p className='p'>Favoritos</p> 
             </button>
             <button value='Perfil'className='button'>
