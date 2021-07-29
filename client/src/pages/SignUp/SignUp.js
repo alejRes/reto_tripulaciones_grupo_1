@@ -30,9 +30,10 @@ function SingUp() {
     const sendSignUp = async(e) => {
         let countchecks = 0;
         e.preventDefault()
-        if(user.name&&user.email&&user.password&&user.passwordConfirmation){
-        
-            for (const key in user) {
+        console.log(`user `, user)
+        if(user.username&&user.email&&user.password&&user.passwordConfirmation){
+            console.log(`user in if`, user)
+             for (const key in user) {
     
                 switch (key) {
                     case 'username':
