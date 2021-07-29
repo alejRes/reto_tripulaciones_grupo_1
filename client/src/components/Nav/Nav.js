@@ -14,7 +14,7 @@ function Nav() {
     
         switch (e.target.value||e.target.id||e.target.name) {
             case 'Favoritos':
-                
+                history.push('/favorites')
                 break;
             case 'Reseñas':
                 history.push('/addreviews')
@@ -40,9 +40,9 @@ function Nav() {
                 <img name='Reseñas'src={anadir} alt="ir a meter Reseña" className='img'onKeyPress={changePage} onClick={changePage}/>
                 <p id='Reseñas'className='p'onKeyPress={changePage}onClick={changePage}>Reseñas</p> 
             </button>
-            <button value='Favoritos'className='button'>
-                <img src={favorito} alt="ir a favoritos"className='img'/>
-                <p className='p'>Favoritos</p> 
+            <button value='Favoritos'className='button'onClick={changePage}>
+                <img name='Favoritos' src={favorito} alt="ir a favoritos"className='img'onClick={changePage}/>
+                <p id='Favoritos' className='p'onClick={changePage}>Favoritos</p> 
             </button>
             <button value='Perfil'className='button'>
                 <img src={usuario} alt="ir a perfil" className='img'/>
