@@ -4,6 +4,7 @@ import { appContext } from '../../context/appContext'
 import CardReview from '../../components/CardReview/CardReview'
 import Logo from '../../images/logo.png'
 import Flecha from '../../images/flecha.svg'
+import './ReviewSearch.css'
 
 function ReviewSearch() {
 
@@ -28,19 +29,16 @@ function ReviewSearch() {
 
         if (search.response.length > 0) {
             return (
-                    
-                
                     search.response.map((elem, i) =>
                     // console.log(`elem`, elem)
                     <CardReview key={i} data={elem} detail={getDetailReview} />
                     )
-                
             )
         } else {
             return (
                 <>
                     <p>No se encontraron resultados</p>
-                    <button onClick={goback} className='btnVolver2'><img src={Flecha} alt="Volver a busqueda" /></button>
+                    
                 </>
             )
         }
@@ -48,6 +46,7 @@ function ReviewSearch() {
     return (
         <>  
             <img className='imgsign' src={Logo} alt="logo" />
+            <button onClick={goback} className='btnVolver3'><img src={Flecha} alt="Volver a busqueda" /></button>
             <h2 className='margin'>Hemos encontrado {search.response.length} resultados</h2>
             {paintSearch()}
         </>

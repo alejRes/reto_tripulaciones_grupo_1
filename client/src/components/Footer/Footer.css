@@ -1,7 +1,7 @@
 .Footer{
     position: fixed;
     bottom: 0%;
-    width: 23.4375em;
+    width: 100vw;
     height: 5.25em;
     margin:0px;
     background-color: #F9EBED;

@@ -11,12 +11,14 @@ function Nav() {
     const history = useHistory()
 
     const changePage =(e)=>{
-        switch (e.target.value) {
+    
+        switch (e.target.value||e.target.id||e.target.name) {
             case 'Favoritos':
                 
                 break;
             case 'Reseñas':
                 history.push('/addreviews')
+            
                 break;
             case 'Explorar':
                 history.push('/search');
@@ -30,16 +32,16 @@ function Nav() {
 
     return (
         <div className='Navegacion'>
-            <button value='Explorar' onClick={changePage} className='button'>
-                <img src={lupa} alt="ir a busqueda" className='img'/>
-                <p className='p'>Explorar</p> 
+            <button value='Explorar' onKeyPress={changePage} onClick={changePage} className='button'>
+                <img name='Explorar'src={lupa} alt="ir a busqueda" className='img'onKeyPress={changePage} onClick={changePage}/>
+                <p id='Explorar' className='p'onKeyPress={changePage}onClick={changePage}>Explorar</p> 
             </button>
             <button id='reseña' value='Reseñas' onClick={changePage} className='button'>
-                <img src={anadir} alt="ir a meter Reseña" className='img'/>
-                <p className='p'>Reseñas</p> 
+                <img name='Reseñas'src={anadir} alt="ir a meter Reseña" className='img'onKeyPress={changePage} onClick={changePage}/>
+                <p id='Reseñas'className='p'onKeyPress={changePage}onClick={changePage}>Reseñas</p> 
             </button>
             <button value='Favoritos'className='button'>
-                <img src={favorito} alt="ir a favoritos" className='img'/>
+                <img src={favorito} alt="ir a favoritos"className='img'/>
                 <p className='p'>Favoritos</p> 
             </button>
             <button value='Perfil'className='button'>
